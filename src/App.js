@@ -37,8 +37,9 @@ function App() {
     <div>
       <ul data-testid="repository-list">
         <li>
-          Repositório {repositories.map((repo) => {
-            <p>{repo.title}</p>
+          Repositório {repositories.map(repo => {
+            <li key={repo.id}>Repositório {repo.title}</li>
+            
           })}
 
           <button onClick={() => handleRemoveRepository(1)}>
