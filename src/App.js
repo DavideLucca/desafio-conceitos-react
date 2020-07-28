@@ -9,6 +9,7 @@ function App() {
   useEffect(() => {
     api.get('repositories').then(response => {
       console.log(response);
+      setRepositories(response.data);
     });
   }, []);
 
@@ -30,22 +31,23 @@ function App() {
     // TODO
     const response = await api.delete(`repositories/${id}`);
     console.log(response);
+    console.log(repositories);
+    setRepositories([...repositories]);
     
   }
 
   return (
     <div>
       <ul data-testid="repository-list">
-        <li>
-          Repositório {repositories.map(repo => {
-            <li key={repo.id}>Repositório {repo.title}</li>
-            
-          })}
+        {repositories.map(proj => (
+          <li key={proj.id}>
+            {proj.title}
 
-          <button onClick={() => handleRemoveRepository(1)}>
+          <button onClick={() => handleRemoveRepository(proj.id)}>
             Remover
           </button>
         </li>
+        ))}
       </ul>
 
       <button onClick={handleAddRepository}>Adicionar</button>
