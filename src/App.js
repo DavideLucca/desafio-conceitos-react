@@ -31,8 +31,12 @@ function App() {
     // TODO
     const response = await api.delete(`repositories/${id}`);
     console.log(response);
-    console.log(repositories);
-    setRepositories([...repositories]);
+    console.log(id);
+    const newRepositories = repositories.filter((items) => {
+      return items.id !== id;
+    })
+    console.log(newRepositories);
+    setRepositories([...newRepositories]);
     
   }
 
